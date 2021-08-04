@@ -33,3 +33,7 @@ a {
 	--green-light: #C8F8E4;
 	--font-family: 'Noto Sans KR', sans-serif;
 }
+
+a:hover {
+	opacity: 0.7;
+}
