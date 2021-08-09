@@ -8,7 +8,7 @@ export interface SortReducerState {
   products: ProductModel[];
 }
 
-export const sortReducer = (state: SortReducerState, action: sortActions): SortReducerState => {
+export const sortReducer = (state: SortReducerState, action: SortActions): SortReducerState => {
   switch(action.type) {
     case SortEnum.Rating:
       return {

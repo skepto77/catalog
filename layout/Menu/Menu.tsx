@@ -23,59 +23,63 @@ export const Menu = (): JSX.Element => {
 
 	const buildFirstLevel = () => {
 		return (
-			<>
+			<ul className={styles.firstLevelList}>
 				{firstLevelMenu.map(m => (
-					<div key={m.route}>
+					<li key={m.route}>
 						<Link href={`/${m.route}`}>
 							<a>
 								<div className={cn(styles.firstLevel, {
 									[styles.firstLevelActive]: m.id == firstCategory
 								})}>
 									{m.icon}
-									<span >{m.name}</span>
+									<span>{m.name}</span>
 								</div>
 							</a>
 						</Link>
 						{m.id == firstCategory && buildSecondLevel(m)}
-					</div>
+					</li>
 				))}
-			</>
+			</ul>
 		);
 	};
 
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
 		return (
-			<div className={styles.secondBlock}>
+			<ul className={styles.secondBlock}>
 				{menu.map(m => {
 					if (m.pages.map(p => p.alias).includes(router.asPath.split('/')[2])) {
 						m.isOpened = true;
 					}
 					return (
-						<div key={m._id.secondCategory}>
+						<li key={m._id.secondCategory}>
 							<div className={styles.secondLevel} onClick={() => openSecondLevel(m._id.secondCategory)}>{m._id.secondCategory}</div>
 							<div className={cn(styles.secondLevelBlock, {
 								[styles.secondLevelBlockOpened]: m.isOpened
 							})}>
 								{buildThirdLevel(m.pages, menuItem.route)}
 							</div>
-						</div>
+						</li>
 					);}
 				)}
-			</div>
+			</ul>
 		);
 	};
 
 	const buildThirdLevel = (pages: PageItem[], route: string) => {
 		return (
-			pages.map(p => (
-				<Link href={`/${route}/${p.alias}`}>
-					<a className={cn(styles.thirdLevel, {
-						[styles.thirdLevelActive]: `${route}/${p.alias}` === router.asPath
-					})}>
-						{p.category}
-					</a>
-				</Link>
-			))
+			<ul>
+				{pages.map(p => (
+					<li key={p._id}>
+						<Link href={`/${route}/${p.alias}`}>
+							<a className={cn(styles.thirdLevel, {
+								[styles.thirdLevelActive]: `${route}/${p.alias}` === router.asPath
+							})}>
+								{p.category}
+							</a>
+						</Link>
+					</li>
+				))}
+			</ul>
 		);
 	};
 
