@@ -8,8 +8,13 @@ import { ProductModel } from '../../interfaces/product.interface';
 import { ParsedUrlQuery } from 'querystring';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { TopPageComponent } from '../../page-components';
+import { Error404 } from '../404';
 
-function TopPage({ menu, firstCategory, page, products }: TopPageProps): JSX.Element {
+function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
+  if (!page || !products) {
+		return <Error404 />;
+	}
+
   return (
     <>
       <TopPageComponent firstCategory={firstCategory} page={page} products={products}/>
