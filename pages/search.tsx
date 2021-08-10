@@ -3,9 +3,8 @@ import { GetStaticProps } from 'next';
 import { withLayout } from '../layout/Layout';
 import axios from 'axios';
 import { MenuItem } from '../interfaces/menu.interface';
-import { Menu } from '../layout/Menu/Menu';
 
-function Search({menu, firstCategory} :SearchProps): JSX.Element {
+function Search(): JSX.Element {
   return (
     <>
       search page
