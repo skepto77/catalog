@@ -14,7 +14,6 @@
 .header {
 	grid-area: header;
 
-	display: none;
 }
 
 .body {
@@ -37,10 +36,6 @@
 			"header"
 			"body"
 			"footer";
-	}
-
-	.header {
-		display: block;
 	}
 
 	.body {
